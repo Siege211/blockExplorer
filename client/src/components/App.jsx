@@ -12,14 +12,22 @@ class App extends React.Component {
   }
     componentWillMount() {
       client.blockchain({ })
-        .then((res) => console.log(res.block_metas))
+        .then((res) => {
+          //most recent 10 blocks
+          // time of their creation
+
+          console.log(res);
+          this.setState({blockList:res.block_metas.slice(0,10)})
+          }
+
+        )
   }
   render() {
   	return (
   	<div>
       React Renders
-      {this.state.blockList.map( (yo,i) =>
-        <p key={i}>{yo}</p>
+      {this.state.blockList.map( (block,i) =>
+        <p key={i}>{i}</p>
       )}
   	</div>
   	)
