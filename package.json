@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-jest": "^24.6.0",
+    "jest": "^24.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-test-renderer": "^16.8.6",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   }
