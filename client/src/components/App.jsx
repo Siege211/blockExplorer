@@ -1,9 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import { RpcClient } from "tendermint";
 const client = RpcClient("wss://rpc.cosmos.network:26657");
-client.subscribe({ query: "tm.event = 'NewBlock'" }, event => {
-console.log(event);
-});
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +11,8 @@ class App extends React.Component {
     }
   }
     componentWillMount() {
-    this.setState({blockList: ["test 1","test2"]})
+      client.blockchain({ })
+        .then((res) => console.log(res.block_metas))
   }
   render() {
   	return (
