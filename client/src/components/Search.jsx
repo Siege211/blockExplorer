@@ -21,9 +21,9 @@ handleInputChange(e) {
 
 render() {
   	return (
-      <div>
+      <div style={{margin:"2px"}}>
   	   <form>
-       <input type="text"/>
+       <input style={{width:"60vw"}}type="text"/>
        <button>Search for Block</button>
        </form>
       </div>
