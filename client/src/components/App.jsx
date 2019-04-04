@@ -1,7 +1,10 @@
 import React from 'react';
-import axios from 'axios';
+import Block from './Block.jsx';
 import { RpcClient } from "tendermint";
 const client = RpcClient("wss://rpc.cosmos.network:26657");
+// client.subscribe({ query: "tm.event = 'NewBlock'" }, event => {
+// console.log(event.block);
+// });
 
 class App extends React.Component {
   constructor(props) {
@@ -17,7 +20,8 @@ class App extends React.Component {
           // time of their creation
 
           console.log(res);
-          this.setState({blockList:res.block_metas.slice(0,10)})
+          this.setState({blockList:res.block_metas.slice(0,10)});
+          console.log(this.state);
           }
 
         )
@@ -25,9 +29,8 @@ class App extends React.Component {
   render() {
   	return (
   	<div>
-      React Renders
       {this.state.blockList.map( (block,i) =>
-        <p key={i}>{i}</p>
+        <Block key={i} blockHeader={block.header} blockId={block.block_id}>{i}</Block>
       )}
   	</div>
   	)
