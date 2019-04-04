@@ -2,6 +2,7 @@ import React from 'react';
 import Block from './Block.jsx';
 import Search from './Search.jsx';
 import { RpcClient } from "tendermint";
+import axios from 'axios';
 const client = RpcClient("wss://rpc.cosmos.network:26657");
 // client.subscribe({ query: "tm.event = 'NewBlock'" }, event => {
 // console.log(event.block);
@@ -28,6 +29,14 @@ class App extends React.Component {
         )
   }
 
+getBlockView(query) {
+ axios.get(`/blockDetailsView:${query}`, {
+  params: {
+    blockHeight: query
+  }
+})
+}
+
 getYouTubeVideos(query) {
     // var options = {
     //   key: 'AIzaSyDVn3K43Hlq18xq5NN0i7vpgNu7669tdX8',
@@ -50,7 +59,12 @@ getYouTubeVideos(query) {
   	<div>
        <Search searchInput={this.getYouTubeVideos.bind(this)}/>
       {this.state.blockList.map( (block,i) =>
-        <Block key={i} blockHeader={block.header} blockId={block.block_id}>{i}</Block>
+        <Block key={i} 
+        blockHeader={block.header} 
+        blockId={block.block_id}
+        blockDetailsView={this.getBlockView.bind(this)}>
+          {i}
+        </Block>
       )}
   	</div>
   	)
