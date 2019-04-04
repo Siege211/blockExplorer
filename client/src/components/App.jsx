@@ -1,5 +1,6 @@
 import React from 'react';
 import Block from './Block.jsx';
+import Search from './Search.jsx';
 import { RpcClient } from "tendermint";
 const client = RpcClient("wss://rpc.cosmos.network:26657");
 // client.subscribe({ query: "tm.event = 'NewBlock'" }, event => {
@@ -26,9 +27,28 @@ class App extends React.Component {
 
         )
   }
+
+getYouTubeVideos(query) {
+    // var options = {
+    //   key: 'AIzaSyDVn3K43Hlq18xq5NN0i7vpgNu7669tdX8',
+    //   query: query
+    //   }
+    // ^ get the string
+
+
+    // searchYouTube(options,(data) =>
+    //   this.setState({
+    //     vids: data
+    //   }))
+    // ^initiate the search with that string
+
+    //the key: put the query argument into a block search function
+  };
+
   render() {
   	return (
   	<div>
+       <Search searchInput={this.getYouTubeVideos.bind(this)}/>
       {this.state.blockList.map( (block,i) =>
         <Block key={i} blockHeader={block.header} blockId={block.block_id}>{i}</Block>
       )}
