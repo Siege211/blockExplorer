@@ -1,6 +1,7 @@
 import React from 'react';
 const Block = props => 
-<div style={{marginBottom:"10px",display:"flex",flexDirection:"column",border:"2px solid black",padding:"3px"}}>
+<div onClick={()=>props.blockDetailsView(props.blockHeader.height)}
+	style={{marginBottom:"10px",display:"flex",flexDirection:"column",border:"2px solid black",padding:"3px"}}>
 	
 	<span style={{marginBottom:"2px",display:"flex",flexDirection:"row"}}>Block Id: {props.blockId && 
 		<div>{props.blockId.hash}</div>}
